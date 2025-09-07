@@ -18,6 +18,8 @@ export default function Register() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    localStorage.setItem("auth", "true");
+    localStorage.setItem("username", name); // ✅ store chosen name
     if (!name || !email || !password) {
       toast.error("Please fill in all fields");
       return;

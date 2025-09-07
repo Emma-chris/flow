@@ -8,6 +8,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import { AuthLayout } from "../layouts/AuthLayout";
 import { DashboardLayout } from "../layouts/DashboardLayout";
 import { Dashboard } from "../pages/Dashboard";
+// import Dashboard from "../pages/Dashboard";
+// import { Dashboard } from "../pages/Dashboard";
 // import AuthLayout from "../layouts/AuthLayout";
 // import DashboardLayout from "../layouts/DashboardLayout";
 

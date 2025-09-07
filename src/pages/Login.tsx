@@ -17,6 +17,9 @@ export default function Login() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    // fake login success
+    localStorage.setItem("auth", "true"); // ✅ store string "true"
+
     if (!email || !password) {
       toast.error("Please enter email and password");
       return;

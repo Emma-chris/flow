@@ -6,6 +6,7 @@ export const DashboardLayout = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("auth");
+    localStorage.removeItem("username");
     navigate("/");
   };
 
