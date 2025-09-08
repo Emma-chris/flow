@@ -23,8 +23,18 @@ export const LandingPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const [offset, setOffset] = useState(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const x = e.clientX / window.innerWidth; // 0 (left) -> 1 (right)
+    setOffset((x - 0.5) * 30); // shift between -15px and +15px
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 text-white flex flex-col">
+    <div
+      className="min-h-screen bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 text-white flex flex-col"
+      onMouseMove={handleMouseMove}
+    >
       {/* Navbar */}
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all ${
@@ -308,9 +318,92 @@ export const LandingPage = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="text-center py-6 bg-indigo-900">
-        <p>&copy; {new Date().getFullYear()} MyApp. All rights reserved.</p>
+      {/* Layered Wave Effect */}
+      <div className="relative">
+        {/* Back wave */}
+        <svg
+          className="absolute top-[-1px] left-0 w-full h-24 animate-wave-slow opacity-60"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+          preserveAspectRatio="none"
+          style={{ transform: `translateX(${offset}px)` }}
+        >
+          <path
+            fill="#2b2d7c"
+            fillOpacity="1"
+            d="M0,64L60,101.3C120,139,240,213,360,240C480,267,600,245,720,213.3C840,181,960,139,1080,122.7C1200,107,1320,117,1380,122.7L1440,128L1440,320L0,320Z"
+          ></path>
+        </svg>
+
+        {/* Front wave */}
+        <svg
+          className="absolute top-[-1px] left-0 w-full h-20 animate-wave opacity-90"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+          preserveAspectRatio="none"
+          style={{ transform: `translateX(${offset}px)` }}
+        >
+          <path
+            fill="#1a1b4b"
+            fillOpacity="1"
+            d="M0,64L60,101.3C120,139,240,213,360,240C480,267,600,245,720,213.3C840,181,960,139,1080,122.7C1200,107,1320,117,1380,122.7L1440,128L1440,320L0,320Z"
+          ></path>
+        </svg>
+      </div>
+
+      {/* Modern Footer */}
+      <footer className="bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 text-gray-300 py-10 relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+          {/* Brand */}
+          <h2 className="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-yellow-400">
+            🌟 MyApp
+          </h2>
+
+          {/* Links */}
+          <nav className="flex space-x-6">
+            {["About", "Privacy", "Terms", "Contact"].map((link) => (
+              <a key={link} href="#" className="relative group">
+                <span className="transition-colors duration-300 group-hover:text-white">
+                  {link}
+                </span>
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-pink-500 to-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            ))}
+          </nav>
+
+          {/* Social Icons */}
+          <div className="flex space-x-5 text-lg">
+            <a
+              href="https://twitter.com/Emmach396Chris"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-pink-400 transition-colors duration-300"
+            >
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a
+              href="https://github.com/Emma-chris"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-yellow-400 transition-colors duration-300"
+            >
+              <i className="fab fa-github"></i>
+            </a>
+            <a
+              href="https://linkedin.com/in/emma-chris"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-400 transition-colors duration-300"
+            >
+              <i className="fab fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+
+        {/* Bottom Note */}
+        <div className="text-center text-sm text-gray-400 mt-6 border-t border-gray-700 pt-4">
+          © {new Date().getFullYear()} MyApp. All rights reserved.
+        </div>
       </footer>
 
       {/* Floating Scroll-to-Top Button */}
