@@ -8,6 +8,13 @@ import ProtectedRoute from "./ProtectedRoute";
 import { AuthLayout } from "../layouts/AuthLayout";
 import { DashboardLayout } from "../layouts/DashboardLayout";
 import { Dashboard } from "../pages/Dashboard";
+import { LandingPage } from "../pages/LandingPage";
+// import LandingPage from "../pages/LandingPage";
+// import { LandingPage } from "../pages/LandingPage";
+// import LandingPage from "../pages/LandingPage";
+// import { LandingPage } from "../pages/LandingPage";
+// import LandingPage from "../pages/LandingPage";
+// import { LandingPage } from "../pages/LandingPage";
 // import Dashboard from "../pages/Dashboard";
 // import { Dashboard } from "../pages/Dashboard";
 // import AuthLayout from "../layouts/AuthLayout";
@@ -17,7 +24,8 @@ export const Router = createBrowserRouter([
   {
     element: <AuthLayout />, // all auth pages share this layout
     children: [
-      { path: "/", element: <Login /> },
+      { path: "/", element: <LandingPage /> },
+      { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/forgot-password", element: <ForgotPassword /> },
       { path: "/reset-password", element: <ResetPassword /> },
